@@ -21,21 +21,32 @@ function ninja_forms_modal_form_shortcode( $atts ){
     }
 
     if ( $id ) {
+        global $ninja_forms_modal;
+        if ( !isset ( $ninja_forms_modal ) ) {
+            $ninja_forms_modal = array();
+        }
+        $ninja_forms_modal[] = $id;
         add_action( 'ninja_forms_display_js', 'ninja_forms_modal_enqueue_scripts' );
-        $modal = ninja_forms_modal_get_modal( $id );
+        add_action( 'wp_footer', 'ninja_forms_modal_output_modal' );
+        //$modal = ninja_forms_modal_get_modal( $id );
     } else {
         return;
     }
 
-    return $link . $modal;
+    return $link;
 }
 add_shortcode( 'ninja_forms_modal_form', 'ninja_forms_modal_form_shortcode' );
 
-function ninja_forms_modal_get_modal( $form_id ) {
-    $modal = '<div id="ninja-forms-modal-' . esc_attr( $form_id ) . '" class="modal" style="display: none;">';
-        $modal .= '<div class="modal-content">';
-            $modal .= ninja_forms_return_echo( 'ninja_forms_display_form', esc_attr( $form_id ) );
-        $modal .= '</div>';
-    $modal .= '</div>';
-    return $modal;
+function ninja_forms_modal_output_modal() {
+    global $ninja_forms_modal;
+    if ( is_array ( $ninja_forms_modal ) ) {
+        foreach ( $ninja_forms_modal as $form_id ) {
+            $modal = '<div id="ninja-forms-modal-' . esc_attr( $form_id ) . '" class="modal" style="display: none;">';
+                $modal .= '<div class="modal-content">';
+                    $modal .= ninja_forms_return_echo( 'ninja_forms_display_form', esc_attr( $form_id ) );
+                $modal .= '</div>';
+            $modal .= '</div>';
+            echo $modal;
+        }
+    }
 }

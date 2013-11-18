@@ -1,21 +1,5 @@
 jQuery( document ).ready(function($) {
 
-  // $('.modal') {
-  //     overlay: "#000",        // Overlay color
-  //     opacity: 0.75,          // Overlay opacity
-  //     zIndex: 1,              // Overlay z-index.
-  //     escapeClose: true,      // Allows the user to close the modal by pressing `ESC`
-  //     clickClose: true,       // Allows the user to close the modal by clicking the overlay
-  //     closeText: '\00d7',     // Text content for the close <a> tag.
-  //     showClose: true,        // Shows a (X) icon/link in the top-right corner
-  //     modalClass: "modal",    // CSS class added to the element being displayed in the modal.
-  //     spinnerHtml: null,      // HTML appended to the default spinner during AJAX requests.
-  //     showSpinner: true,      // Enable/disable the default spinner during AJAX requests.
-  //     fadeDuration: null,     // Number of milliseconds the fade transition takes (null means no transition)
-  //     fadeDelay: 1.0          // Point during the overlay's fade-in that the modal begins to fade in (.5 = 50%, 1.5 = 150%, etc.)
-  //   };
-  //
-
   var wheight = $(window).height();
   var mheight = $(".modal").outerHeight();
 
@@ -24,14 +8,6 @@ jQuery( document ).ready(function($) {
       closeText: '&times;',
       fadeDuration: 250
     });
-
-    // if(mheight > wheight) {
-    //   var height = $(window).height() - 150;
-    //   $(".modal").height(height);
-    // }
-    // if(mheight < wheight) {
-    //   $(".modal").height(mheight);
-    // }
 
     return false;
   });
@@ -42,43 +18,79 @@ jQuery( document ).ready(function($) {
   }
 
   $( window ).resize(function() {
-    // $( "body" ).prepend( "<div>" + $( window ).width() + "</div>" );
-    var nh = $(window).height()
-    $.modal.resize();
-    if(nh != wheight && (mheight + 150) > nh) {
-      var height = $(window).height() - 150;
-      $(".modal").height(height);
+    var content = jQuery(".modal").find(".modal-content");
+    var page_height = jQuery(content).innerHeight();
+    var page_width = jQuery(content).innerWidth();
+
+    var window_height = $(window).height();
+    var window_width = $(window).width();
+
+    var modal_width = page_width;
+    console.log( window_width );
+    var modal_height = page_height + 220;
+
+    if ( modal_height > ( window_height / 1.2 ) ) {
+      modal_height = window_height / 1.2;
     }
 
-  });
-
-  $( ".modal" ).resize(function() {
-    // $( "body" ).prepend( "<div>" + $( window ).width() + "</div>" );
-    var nh = $(".modal").height()
-    $.modal.resize();
-    if(nh != wheight && (mheight + 150) > nh) {
-      var height = $(window).height() - 150;
-      $(".modal").height(height);
+    if ( modal_width > ( window_width / 1.2 ) ) {
+      modal_width = window_width / 1.2;
     }
+
+    var marginTop = - ( modal_height / 2 );
+    var marginLeft = - ( modal_width / 2 );
+      
+    $(".modal").css( "margin-top", marginTop );
+    $(".modal").css( "margin-left", marginLeft );
+    $(".modal").height( modal_height );
 
   });
 
   $(document).on($.modal.OPEN, function(event, modal) {
-    console.log( "Open Modal Event" );
+    $(document).off( 'mp_page_change.scroll' );
     $('html').css('overflow', 'hidden');
-
-    // $.ajax({
-    //   // url: window.location.protocol + "//" + window.location.host + "/" + window.location.pathname,
-    //   context: document.body
-    // }).done(function() {
-    //   console.log( "AJAX" );
-    //   $( this ).addClass( "done" );
-    // });
-
   });
 
   $(document).on($.modal.CLOSE, function(event, modal) {
     $('html').css('overflow', 'auto');
+      jQuery(document).on( 'mp_page_change.scroll', function( e, form_id, new_page, old_page ) {
+        ninja_forms_scroll_to_top( form_id );
+      });
+  });
+
+  $(document).on( 'mp_page_change.modal_resize', function( e, form_id, new_page, old_page ) {
+      var content = jQuery("#ninja_forms_form_" + form_id + "_mp_page_" + new_page);
+      var page_height = jQuery(content).innerHeight();
+      var window_height = jQuery(window).innerHeight();
+      var modal_height = page_height + 220;
+
+      if ( modal_height > ( window_height / 1.2 ) ) {
+        modal_height = window_height / 1.2;
+      }
+      var marginTop = - ( modal_height / 2 );
+
+      jQuery(".modal").animate({
+        "margin-top": marginTop,
+        "height": modal_height
+      });
+  });
+
+  $(".modal-content").on('change', function(e) {
+    var content = $(this).find(".ninja-forms-form-wrap");
+    var page_height = jQuery(content).innerHeight();
+
+    var window_height = $(window).height();
+    var window_width = $(window).width();
+    var modal_height = page_height + 220;
+
+    if ( modal_height > ( window_height / 1.2 ) ) {
+      modal_height = window_height / 1.2;
+    }
+
+    var marginTop = - ( modal_height / 2 );
+      
+    $(".modal").css( "margin-top", marginTop );
+    $(".modal").height( modal_height );
   });
 
 });
