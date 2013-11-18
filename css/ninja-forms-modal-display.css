@@ -26,7 +26,7 @@
     background:#fff;
     padding: 15px;
     height: 100%;
-    overflow: scroll;
+    overflow: auto;
 }
 
 .modal a.close-modal {
@@ -34,16 +34,15 @@
     border-radius: 15px;
     color: #000;
     content: '\00d7';
+    font-family: arial;
     font-size: 30px;
     line-height: 18px;
     padding: 5px;
-    padding-left: 7px;
+    text-decoration: none;
     position: absolute;
     top: 0;
     right: 0;
     display: block;
-    width: 30px;
-    height: 30px;
 /*  text-indent: -9999px;*/
 /*  background: url(close.png) no-repeat 0 0;*/
 }
