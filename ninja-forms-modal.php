@@ -47,7 +47,7 @@ function ninja_forms_modal_load_lang() {
 }
 add_action('plugins_loaded', 'ninja_forms_modal_load_lang');
 
-register_activation_hook( __FILE__, 'ninja_forms_modal_activation' );
+// register_activation_hook( __FILE__, 'ninja_forms_modal_activation' );
 
 function ninja_forms_modal_enqueue_scripts() {
 

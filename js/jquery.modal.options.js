@@ -1,9 +1,9 @@
 jQuery( document ).ready(function($) {
 
   var wheight = $(window).height();
-  var mheight = $(".modal").outerHeight();
+  var mheight = $(".nf-modal").outerHeight();
 
-  $('a.modal-link').on( "click", function() {
+  $('a.nf-modal-link').on( "click", function() {
     $(this).modal({
       closeText: '&times;',
       fadeDuration: 250
@@ -14,7 +14,7 @@ jQuery( document ).ready(function($) {
 
   if(mheight > wheight) {
     var height = $(window).height() - 150;
-    $(".modal").height(height);
+    $(".nf-modal").height(height);
   }
 
   $(document).on($.modal.OPEN, function(event, modal) {
@@ -48,7 +48,7 @@ jQuery( document ).ready(function($) {
 });
 
 function ninja_forms_resize_modal() {
-    var content = jQuery(".modal").find(".modal-content").find(".ninja-forms-form-wrap");
+    var content = jQuery(".nf-modal").find(".nf-modal-content").find(".ninja-forms-form-wrap");
     var page_height = jQuery(content).height();
     var page_width = jQuery(content).width();
 
@@ -62,7 +62,7 @@ function ninja_forms_resize_modal() {
       modal_height = window_height / 1.2;
     }
 
-    jQuery(".modal").height( modal_height );
-    jQuery(".modal-content").css("padding", 15);
+    jQuery(".nf-modal").height( modal_height );
+    jQuery(".nf-modal-content").css("padding", 15);
     jQuery.modal.resize();    
 }

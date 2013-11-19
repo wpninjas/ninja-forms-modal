@@ -9,11 +9,11 @@ function ninja_forms_modal_form_shortcode( $atts ){
     ), $atts ) );
     $link = '';
     if ( $image_link ) {
-        $link .= '<a href="#ninja-forms-modal-' . esc_attr( $id ) . '" rel="modal:open" class="modal-link">';
+        $link .= '<a href="#ninja-forms-modal-' . esc_attr( $id ) . '" rel="nf-modal:open" class="nf-modal-link">';
             $link .= '<img src="' . esc_attr( $image_link ) . '" />';
         $link .= '</a>';
     } elseif ( $text_link ) {
-        $link .= '<a href="#ninja-forms-modal-' . esc_attr( $id ) . '" rel="modal:open" class="modal-link">';
+        $link .= '<a href="#ninja-forms-modal-' . esc_attr( $id ) . '" rel="nf-modal:open" class="nf-modal-link">';
             $link .= esc_attr( $text_link );
         $link .= '</a>';
     } else {
@@ -41,8 +41,8 @@ function ninja_forms_modal_output_modal() {
     global $ninja_forms_modal;
     if ( is_array ( $ninja_forms_modal ) ) {
         foreach ( $ninja_forms_modal as $form_id ) {
-            $modal = '<div id="ninja-forms-modal-' . esc_attr( $form_id ) . '" class="modal" style="display: none;">';
-                $modal .= '<div class="modal-content">';
+            $modal = '<div id="ninja-forms-modal-' . esc_attr( $form_id ) . '" class="nf-modal" style="display: none;">';
+                $modal .= '<div class="nf-modal-content">';
                     $modal .= ninja_forms_return_echo( 'ninja_forms_display_form', esc_attr( $form_id ) );
                 $modal .= '</div>';
             $modal .= '</div>';
