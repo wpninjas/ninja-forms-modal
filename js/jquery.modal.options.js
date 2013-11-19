@@ -18,7 +18,7 @@ jQuery( document ).ready(function($) {
   }
 
   $( window ).resize(function() {
-
+    var old_height = $(".modal").data("old_height");
     var content = jQuery(".modal").find(".modal-content");
     var page_height = jQuery(content).height();
     var page_width = jQuery(content).width();
@@ -27,12 +27,12 @@ jQuery( document ).ready(function($) {
     var window_width = $(window).width();
 
     var modal_width = page_width;
-    console.log( window_width );
     var modal_height = page_height + 220;
 
-    if ( modal_height > ( window_height / 1.2 ) ) {
+    if ( ( modal_height > ( window_height / 1.2 ) ) || ( modal_height < old_height && modal_height < ( window_height / 1.2 ) ) ) {
       modal_height = window_height / 1.2;
       $(".modal").height( modal_height );
+      $(".modal").data("old_height", modal_height );
       var marginTop = - ( modal_height / 2 );
       $(".modal").css( "margin-top", marginTop );
     }
