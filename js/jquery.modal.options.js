@@ -56,7 +56,7 @@ function ninja_forms_resize_modal() {
     var window_width = jQuery(window).width();
 
     var modal_width = page_width;
-    var modal_height = page_height + 26;
+    var modal_height = page_height + 30;
 
     if ( modal_height > ( window_height / 1.2 ) ) {
       modal_height = window_height / 1.2;
