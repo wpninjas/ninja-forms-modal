@@ -37,7 +37,11 @@ jQuery( document ).ready(function($) {
     ninja_forms_resize_modal();
   });
 
-  $(document).on( 'ninja_forms_mp_show', function(e) {
+  $(document).on( 'ninja_forms_conditional_show', function(e) {
+    ninja_forms_resize_modal();
+  });  
+
+  $(document).on( 'ninja_forms_conditional_hide', function(e) {
     ninja_forms_resize_modal();
   });
 
