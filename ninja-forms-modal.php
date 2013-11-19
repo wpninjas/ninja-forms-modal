@@ -16,16 +16,16 @@ define("NINJA_FORMS_MODAL_VERSION", "1.0");
 
 function ninja_forms_modal_setup_license() {
   if ( class_exists( 'NF_Extension_Updater' ) ) {
-    $NF_Extension_Updater = new NF_Extension_Updater( 'Modal', NINJA_FORMS_PAYPAL_EXPRESS_VERSION, 'WP Ninjas', __FILE__, 'modal' );
+    $NF_Extension_Updater = new NF_Extension_Updater( 'Modal', NINJA_FORMS_MODAL_VERSION, 'WP Ninjas', __FILE__ );
   }
 }
 
-add_action( 'admin_init', 'ninja_forms_modal_setup_license' );
+//add_action( 'admin_init', 'ninja_forms_modal_setup_license' );
 
 function ninja_forms_modal_load_lang() {
 
   /** Set our unique textdomain string */
-  $textdomain = 'ninja-forms-paypal-express';
+  $textdomain = 'ninja-forms-modal';
 
   /** The 'plugin_locale' filter is also used by default in load_plugin_textdomain() */
   $locale = apply_filters( 'plugin_locale', get_locale(), $textdomain );

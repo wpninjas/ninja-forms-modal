@@ -18,9 +18,10 @@ jQuery( document ).ready(function($) {
   }
 
   $( window ).resize(function() {
+
     var content = jQuery(".modal").find(".modal-content");
-    var page_height = jQuery(content).innerHeight();
-    var page_width = jQuery(content).innerWidth();
+    var page_height = jQuery(content).height();
+    var page_width = jQuery(content).width();
 
     var window_height = $(window).height();
     var window_width = $(window).width();
@@ -31,19 +32,16 @@ jQuery( document ).ready(function($) {
 
     if ( modal_height > ( window_height / 1.2 ) ) {
       modal_height = window_height / 1.2;
+      $(".modal").height( modal_height );
+      var marginTop = - ( modal_height / 2 );
+      $(".modal").css( "margin-top", marginTop );
     }
 
     if ( modal_width > ( window_width / 1.2 ) ) {
       modal_width = window_width / 1.2;
+      var marginLeft = - ( modal_width / 2 );
+      $(".modal").css( "margin-left", marginLeft );
     }
-
-    var marginTop = - ( modal_height / 2 );
-    var marginLeft = - ( modal_width / 2 );
-      
-    $(".modal").css( "margin-top", marginTop );
-    $(".modal").css( "margin-left", marginLeft );
-    $(".modal").height( modal_height );
-
   });
 
   $(document).on($.modal.OPEN, function(event, modal) {
@@ -76,21 +74,24 @@ jQuery( document ).ready(function($) {
   });
 
   $(".modal-content").on('change', function(e) {
+    var current_height = $(this).height();
     var content = $(this).find(".ninja-forms-form-wrap");
-    var page_height = jQuery(content).innerHeight();
+    var page_height = jQuery(content).height();
+    if ( page_height > current_height ) {
+      var window_height = $(window).height();
+      var window_width = $(window).width();
+      var modal_height = page_height + 220;
 
-    var window_height = $(window).height();
-    var window_width = $(window).width();
-    var modal_height = page_height + 220;
+      if ( modal_height > ( window_height / 1.2 ) ) {
+        modal_height = window_height / 1.2;
+      }
 
-    if ( modal_height > ( window_height / 1.2 ) ) {
-      modal_height = window_height / 1.2;
+      var marginTop = - ( modal_height / 2 );
+        
+      $(this).parent().css( "margin-top", marginTop );
+      $(this).parent().height( modal_height );      
     }
 
-    var marginTop = - ( modal_height / 2 );
-      
-    $(".modal").css( "margin-top", marginTop );
-    $(".modal").height( modal_height );
   });
 
 });
