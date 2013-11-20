@@ -3,15 +3,13 @@ Contributors: jameslaws, kstover
 Tags: form, forms, contact, modal, pop-up, popup
 Requires at least: 3.5
 Tested up to: 3.7.1
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 
 License: GPLv2 or later
 
 Ninja Forms Modal makes it super easy to open any Ninja Form in a pop up modal from a text or image link.
 
 == Description ==
-
-*This plugin is still in initial debugging but feel free to try it out but know that there may be some bugs.*
 
 Ninja Forms Modal makes it super easy to open any Ninja Form in a pop up modal from a text or image link. This plugim requires [Ninja Forms](http://ninjaforms.com) to function.
 
@@ -38,5 +36,13 @@ For any assistance, please visit our website: [NinjaForms.com](http://ninjaforms
 
 == Changelog ==
 
-= 1.0.0 - 11/20/2013 =
+= 1.0.1 - 11/20/2013 =
+* Fixed some resizing issues when multiple forms were on the same page.
+
+= 1.0.0 - 11/19/2013 =
 * Initial release
+
+== Upgrade Notice ==
+
+= 1.0.1 =
+Fixed some resizing issues when multiple forms were on the same page.

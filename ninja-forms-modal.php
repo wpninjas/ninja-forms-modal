@@ -3,7 +3,7 @@
 Plugin Name: Ninja Forms - Modal
 Plugin URI: http://ninjaforms.com/downloads/modal
 Description: Allows Ninja Forms to open in a modal window.
-Version: 1.0
+Version: 1.0.1
 Author: The WP Ninjas
 Author URI: http://ninjaforms.com
 Text Domain: ninja-forms-modal
@@ -12,7 +12,7 @@ Domain Path: /lang/
 
 define("NINJA_FORMS_MODAL_DIR", WP_PLUGIN_DIR."/".basename( dirname( __FILE__ ) ) );
 define("NINJA_FORMS_MODAL_URL", plugins_url()."/".basename( dirname( __FILE__ ) ) );
-define("NINJA_FORMS_MODAL_VERSION", "1.0");
+define("NINJA_FORMS_MODAL_VERSION", "1.0.1");
 
 function ninja_forms_modal_setup_license() {
   if ( class_exists( 'NF_Extension_Updater' ) ) {
