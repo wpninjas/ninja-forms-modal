@@ -18,6 +18,11 @@
     border-radius: 12px;
     box-shadow: 0 0 10px #000;
     z-index: 9999 !important;
+    overflow: auto;
+}
+
+.ninja-forms-form-wrap {
+    overflow: auto;
 }
 
 .nf-modal-content {
@@ -25,7 +30,7 @@
     border-radius: 10px;
     background:#fff;
     padding: 15px;
-    height: 100%;
+    /* height: 100%; */
     overflow: auto;
 }
 
