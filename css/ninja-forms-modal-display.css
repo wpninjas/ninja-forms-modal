@@ -9,8 +9,13 @@
     filter: alpha(opacity=50);
 }*/
 
+.ninja-forms-form-wrap {
+    overflow: auto;
+}
+
 .nf-modal {
     background: rgba( 0,0,0,0.3);
+/*    background: #fff;*/
     display: none;
     width: 90%;
     max-width: 700px;
@@ -21,16 +26,12 @@
     overflow: auto;
 }
 
-.ninja-forms-form-wrap {
-    overflow: auto;
-}
-
 .nf-modal-content {
     background: #fff;
     border-radius: 10px;
     background:#fff;
     padding: 15px;
-    /* height: 100%; */
+/*    max-height: 100%;*/
     overflow: auto;
 }
 
