@@ -1,9 +1,9 @@
 jQuery( document ).ready(function($) {
 
   var wheight = $(window).height();
-  var mheight = $(".modal").outerHeight();
+  var mheight = $(".nf-modal").outerHeight();
 
-  $('a.modal-link').on( "click", function() {
+  $('a.nf-modal-link').on( "click", function() {
     $(this).modal({
       closeText: '&times;',
       fadeDuration: 250
@@ -14,39 +14,14 @@ jQuery( document ).ready(function($) {
 
   if(mheight > wheight) {
     var height = $(window).height() - 150;
-    $(".modal").height(height);
+    $(".nf-modal").height(height);
   }
-
-  $( window ).resize(function() {
-    var old_height = $(".modal").data("old_height");
-    var content = jQuery(".modal").find(".modal-content");
-    var page_height = jQuery(content).height();
-    var page_width = jQuery(content).width();
-
-    var window_height = $(window).height();
-    var window_width = $(window).width();
-
-    var modal_width = page_width;
-    var modal_height = page_height + 220;
-
-    if ( ( modal_height > ( window_height / 1.2 ) ) || ( modal_height < old_height && modal_height < ( window_height / 1.2 ) ) ) {
-      modal_height = window_height / 1.2;
-      $(".modal").height( modal_height );
-      $(".modal").data("old_height", modal_height );
-      var marginTop = - ( modal_height / 2 );
-      $(".modal").css( "margin-top", marginTop );
-    }
-
-    if ( modal_width > ( window_width / 1.2 ) ) {
-      modal_width = window_width / 1.2;
-      var marginLeft = - ( modal_width / 2 );
-      $(".modal").css( "margin-left", marginLeft );
-    }
-  });
 
   $(document).on($.modal.OPEN, function(event, modal) {
     $(document).off( 'mp_page_change.scroll' );
     $('html').css('overflow', 'hidden');
+
+    ninja_forms_resize_modal();
   });
 
   $(document).on($.modal.CLOSE, function(event, modal) {
@@ -56,42 +31,42 @@ jQuery( document ).ready(function($) {
       });
   });
 
-  $(document).on( 'mp_page_change.modal_resize', function( e, form_id, new_page, old_page ) {
-      var content = jQuery("#ninja_forms_form_" + form_id + "_mp_page_" + new_page);
-      var page_height = jQuery(content).innerHeight();
-      var window_height = jQuery(window).innerHeight();
-      var modal_height = page_height + 220;
-
-      if ( modal_height > ( window_height / 1.2 ) ) {
-        modal_height = window_height / 1.2;
-      }
-      var marginTop = - ( modal_height / 2 );
-
-      jQuery(".modal").animate({
-        "margin-top": marginTop,
-        "height": modal_height
-      });
+  $( window ).resize(function() {
+    ninja_forms_resize_modal();
   });
 
-  $(".modal-content").on('change', function(e) {
-    var current_height = $(this).height();
-    var content = $(this).find(".ninja-forms-form-wrap");
-    var page_height = jQuery(content).height();
-    if ( page_height > current_height ) {
-      var window_height = $(window).height();
-      var window_width = $(window).width();
-      var modal_height = page_height + 220;
+  $(document).on( 'mp_page_change.modal_resize', function( e, form_id, new_page, old_page ) {
+    ninja_forms_resize_modal();
+  });
 
-      if ( modal_height > ( window_height / 1.2 ) ) {
-        modal_height = window_height / 1.2;
-      }
+  $(document).on( 'ninja_forms_conditional_show', function(e) {
+    ninja_forms_resize_modal();
+  });  
 
-      var marginTop = - ( modal_height / 2 );
-        
-      $(this).parent().css( "margin-top", marginTop );
-      $(this).parent().height( modal_height );      
-    }
-
+  $(document).on( 'ninja_forms_conditional_hide', function(e) {
+    ninja_forms_resize_modal();
   });
 
 });
+
+function ninja_forms_resize_modal() {
+    var content = jQuery(".nf-modal.modal.current").children(".nf-modal-content").children(".ninja-forms-form-wrap");
+    var page_height = jQuery(content).outerHeight(true);
+    var current_modal_height = jQuery(".nf-modal.current").height();
+
+    var window_height = jQuery(window).height();
+
+    var modal_height = page_height + 30;
+
+    if ( modal_height > ( window_height / 1.2 ) ) {
+      modal_height = window_height / 1.2;
+    }
+
+    if ( current_modal_height != modal_height ) {
+      jQuery(".nf-modal.current").height( modal_height );
+      jQuery(".nf-modal.current").children(".nf-modal-content").height(modal_height - 30);
+      jQuery(".nf-modal.current").children(".nf-modal-content").css("padding", 15);      
+    }
+
+    jQuery.modal.resize();
+}
