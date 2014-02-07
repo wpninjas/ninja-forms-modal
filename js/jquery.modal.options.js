@@ -50,7 +50,7 @@ jQuery( document ).ready(function($) {
 });
 
 function ninja_forms_resize_modal() {
-    var content = jQuery(".nf-modal.modal.current").children(".nf-modal-content").children(".ninja-forms-form-wrap");
+    var content = jQuery(".nf-modal.modal.current").children(".nf-modal-content").children(".ninja-forms-cont");
     var page_height = jQuery(content).outerHeight(true);
     var current_modal_height = jQuery(".nf-modal.current").height();
 
