@@ -15,9 +15,9 @@ Ninja Forms Modal makes it super easy to open any Ninja Form in a pop up modal f
 
 Simply use the [ninja_forms_modal] shortcode and pass it the following parameters: your form ID (id), the text or image url you would like to be used as the link to your Ninja Forms Modal (text_link, image_link).
 
-Here is a example of a text link: [ninja_forms_modal id=2 text_link="Click here to fill out out form"]
+Here is a example of a text link: [ninja_forms_modal_form id=2 text_link="Click here to fill out out form"]
 
-Here is a example of a text link: [ninja_forms_modal id=2 image_link="http://yourdomain.com/img/yourimage.png"]
+Here is a example of a text link: [ninja_forms_modal_form id=2 image_link="http://yourdomain.com/img/yourimage.png"]
 
 Now when anyone click that link your Ninja Forms will open in a very nice modal window. Coming soon we will be adding style definitions for the modal window to the Ninja Forms Layout & Styles Extension.
 
