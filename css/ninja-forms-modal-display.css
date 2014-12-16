@@ -9,6 +9,10 @@
     filter: alpha(opacity=50);
 }*/
 
+.ninja-forms-cont {
+    overflow: auto;
+}
+
 .ninja-forms-form-wrap {
     overflow: auto;
 }
