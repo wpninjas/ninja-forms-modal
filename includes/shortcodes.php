@@ -38,6 +38,9 @@ function ninja_forms_modal_form_shortcode( $atts ){
 add_shortcode( 'ninja_forms_modal_form', 'ninja_forms_modal_form_shortcode' );
 
 function ninja_forms_modal_output_modal() {
+  if ( !function_exists( 'ninja_forms_return_echo' ) ) {
+    return FALSE;
+  }
     global $ninja_forms_modal;
     if ( is_array ( $ninja_forms_modal ) ) {
         foreach ( $ninja_forms_modal as $form_id ) {
