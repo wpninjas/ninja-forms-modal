@@ -3,7 +3,7 @@ Contributors: jameslaws, kstover
 Tags: form, forms, contact, modal, pop-up, popup
 Requires at least: 3.5
 Tested up to: 3.7.1
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 
 License: GPLv2 or later
 
@@ -35,6 +35,12 @@ This section describes how to install the plugin and get it working.
 For any assistance, please visit our website: [NinjaForms.com](http://ninjaforms.com)
 
 == Changelog ==
+
+= 1.0.3 (29 July 2015) =
+
+*Bugs:*
+
+* Fixed a bug that could cause fatal errors if Ninja Forms core is deactivated.
 
 = 1.0.2 - 02/12/2014
 * Fixed a compatibility issue with Ninja Forms version 2.5.
