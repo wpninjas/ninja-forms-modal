@@ -5,15 +5,16 @@ function ninja_forms_modal_form_shortcode( $atts ){
         'id' => '',
         'text_link' => '',
         'image_link' => '',
+        'class' => '',
     // ...etc
     ), $atts ) );
     $link = '';
     if ( $image_link ) {
-        $link .= '<a href="#ninja-forms-modal-' . esc_attr( $id ) . '" rel="nf-modal:open" class="nf-modal-link">';
+        $link .= '<a href="#ninja-forms-modal-' . esc_attr( $id ) . '" rel="nf-modal:open" class="nf-modal-link '.$class.'">';
             $link .= '<img src="' . esc_attr( $image_link ) . '" />';
         $link .= '</a>';
     } elseif ( $text_link ) {
-        $link .= '<a href="#ninja-forms-modal-' . esc_attr( $id ) . '" rel="nf-modal:open" class="nf-modal-link">';
+        $link .= '<a href="#ninja-forms-modal-' . esc_attr( $id ) . '" rel="nf-modal:open" class="nf-modal-link '.$class.'">';
             $link .= esc_attr( $text_link );
         $link .= '</a>';
     } else {
